@@ -48,17 +48,7 @@ public class RestaurantSatisfactionApplication implements CommandLineRunner {
 		}
 
 		// Generate and save sample reviews for each restaurant
-		Random random = new Random();
-		List<Restaurant> restaurants = restaurantRepository.findAll();
-		for (Restaurant restaurant : restaurants) {
-			for (int i = 0; i < 5; i++) { // Add 5 reviews for each restaurant
-				Review review = new Review();
-				review.setRestaurantId(restaurant.getId());
-				review.setRating(random.nextInt(5) + 1); // Random rating between 1 and 5
-				review.setComment(reviews[random.nextInt(reviews.length)]);
-				reviewRepository.save(review);
-			}
-		}
+
 	}
 }
 

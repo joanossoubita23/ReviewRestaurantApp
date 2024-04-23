@@ -1,5 +1,6 @@
 package RestaurantSatisfaction.demo.Security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -12,26 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfiguration {
+public class SecurityConfig  {
 
-    protected  void configure (HttpSecurity http) throws Exception{
-        http
-                .authorizeRequests()
-                .dispatcherTypeMatchers(HttpMethod.valueOf("/api/restaurant/**")).authenticated()
-                .dispatcherTypeMatchers(HttpMethod.valueOf("/api/reviews/**")).authenticated()
-                .anyRequest().permitAll()
-                .and();
-    }
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth
-                .inMemoryAuthentication()
-                .withUser("user")
-                .password(passwordEncoder().encode("password"))
-                .roles("USER");
-    }
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
 
 }
